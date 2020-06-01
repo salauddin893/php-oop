@@ -21,5 +21,10 @@ function ClassAotuLoad($class) {
 spl_autoload_register("ClassAotuLoad");
 
 
+function redirect($location) {
+    header("location: {$location}");
+}
+
+
 
 ?>

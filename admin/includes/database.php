@@ -32,17 +32,22 @@ class Database {
 
     private function confirm_query($result) {
         if(!$result) {
-            die("QUERY FAILED" . $this->connection->error);
+            die("QUERY FAILED " . $this->connection->error);
         }
     }
 
-    private function escape_string($strings) {
+    public function escape_string($strings) {
         $escape_string = $this->connection->real_escape_string($strings);
         return $escape_string;
     }
 
     private function insert_id() {
         return $this->connection->insert_id;
+    }
+
+
+    public function the_insert_id() {
+        return mysqli_insert_id($this->connection);
     }
     
 

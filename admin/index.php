@@ -1,5 +1,7 @@
 <?php include("includes/header.php"); ?>
 
+<?php  if(!$session->is_sing_in()) {redirect('login.php');} ?>
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,8 +16,10 @@
         <div id="page-wrapper">
 
             <?php include_once("includes/admin_content.php"); ?>
+    
 
         </div>
         <!-- /#page-wrapper -->
 
   <?php include("includes/footer.php"); ?>
+

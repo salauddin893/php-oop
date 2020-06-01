@@ -1,7 +1,9 @@
 <?php
 
-class User {
+class User extends Db_object {
 
+    protected static $db_table = 'users';
+    protected static $db_table_fields = array('username', 'password', 'first_name', 'last_name');
     public $id;
     public $username;
     public $password;
@@ -9,54 +11,27 @@ class User {
     public $last_name;
 
 
-    public static function find_all_users() {
-        return self::find_this_query("SELECT * FROM users");
-    }
+    
 
 
-    public static function find_user_by_id($user_id) {
+    public static function verify_user($username, $password) {
         global $database;
 
-        $tehe_result_array = self::find_this_query("SELECT * FROM users WHERE id = $user_id ");
+        $username = $database->escape_string($username);
+        $password = $database->escape_string($password);
+
+        $sql = "SELECT * FROM " . self::$db_table . " WHERE ";
+        $sql .= "username = '{$username}' ";
+        $sql .= "AND password = '{$password}' ";
+        $sql .= "LIMIT 1 ";
+
+        $tehe_result_array = self::find_this_query($sql);
         
         return !empty($tehe_result_array) ? array_shift($tehe_result_array) : false;
 
+
+
     }
-
-    public static function find_this_query($sql) {
-        global $database;
-        $result_set = $database->query($sql);
-        $the_object_array = array();
-
-        while($row = mysqli_fetch_array($result_set)) {
-            $the_object_array[] = self::instantion($row);
-        }
-
-        return $the_object_array;
-    }
-
-    public static function instantion($the_recode) {
-
-        $the_opjact = new self;
-
-        foreach($the_recode as $the_attribute => $value) {
-
-            if($the_opjact->has_the_attribute($the_attribute)) {
-                $the_opjact->$the_attribute = $value;
-            }
-
-        }
-
-        return $the_opjact;
-    }
-
-
-    private function has_the_attribute($the_attribute) {
-       $opjact_propertige = get_object_vars($this);
-
-       return array_key_exists($the_attribute, $opjact_propertige);
-    }
-
 
 
 }

@@ -23,53 +23,6 @@
                         <small>Subheading</small>
                     </h1>
 
-
-<?php
-
-    // $sql = "SELECT * FROM users WHERE id = 1";
-    // $result = $database->query($sql);
-    // $user_found = mysqli_fetch_array($result);
-
-    // echo $user_found['username'];
-
-    // $all_usres = User::find_all_users();
-
-    // while($row = mysqli_fetch_array($all_usres)) {
-    //     echo $row['username'] . '<br>';
-    // }
-
-
-    // $user_info = User::find_user_by_id(2);
-    
-    // $user = User::instantion($user_info);
-
-    // // $user = new User();
-
-    // echo $user->id;
-
-    // $user = new User();
-
-    // $users = User::find_all_users();
-
-    // foreach($users as $user) {
-    //     echo $user->username . "<br>";
-    // }
-
-    // $user = new User();
-
-    // $user_id_fund = User::find_all_users();
-
-    // echo $user->username;
-
-    $users = User::find_all_users();
-
-    foreach($users as $user) {
-        echo $user->username . "</br>";
-    }
-
-?>
-
-
                     <ol class="breadcrumb">
                         <li>
                             <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
